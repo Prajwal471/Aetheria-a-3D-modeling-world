@@ -38,6 +38,9 @@ export interface SceneObject {
     geometry?: any;
     aiGenerated?: boolean;
     prompt?: string;
+    style?: 'realistic' | 'cartoon' | 'low-poly' | 'architectural';
+    complexity?: 'simple' | 'medium' | 'complex';
+    size?: 'small' | 'medium' | 'large';
     createdAt: number;
     createdBy: string;
   };

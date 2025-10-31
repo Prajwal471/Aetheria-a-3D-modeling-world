@@ -54,6 +54,7 @@ if (isDemoMode) {
   
   // Mock Google Auth Provider
   (global as any).GoogleAuthProvider = class MockGoogleAuthProvider {
+    providerId: string;
     constructor() {
       this.providerId = 'google.com';
     }
@@ -98,6 +99,7 @@ if (isDemoMode) {
     
     // Mock Google Auth Provider for fallback
     (global as any).GoogleAuthProvider = class MockGoogleAuthProvider {
+      providerId: string;
       constructor() {
         this.providerId = 'google.com';
       }

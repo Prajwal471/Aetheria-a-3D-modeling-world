@@ -159,7 +159,7 @@ export class VoiceChatService {
     }
   }
 
-  private async removeParticipant(participantId: string): void {
+  private async removeParticipant(participantId: string): Promise<void> {
     const peerConnection = this.peerConnections.get(participantId);
     if (peerConnection) {
       peerConnection.close();

@@ -20,7 +20,7 @@ import { SceneObject } from '@/types';
 
 interface AIGenerationPanelProps {
   onObjectGenerated: (object: SceneObject) => void;
-  onEnvironmentGenerated: (environment: any) => void;
+  onEnvironmentGenerated: (environment: { backgroundColor: string; fogEnabled: boolean; fogColor: string; fogNear: number; fogFar: number; lighting: any; }) => void;
   onClose: () => void;
 }
 

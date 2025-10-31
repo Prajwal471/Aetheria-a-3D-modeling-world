@@ -131,12 +131,23 @@ export default function Editor({ projectId }: EditorProps) {
     ));
   };
 
-  const handleAIGeneratedObject = (object: SceneObject) => {
-    setObjects([...objects, object]);
+  const handleAIGeneratedObject = (object: any) => {
+    const newObject: SceneObject = {
+      id: object.id,
+      type: 'box',
+      name: object.name,
+      position: object.position,
+      rotation: object.rotation,
+      scale: object.scale,
+      color: '#4A90E2',
+      visible: true,
+      locked: false
+    };
+    setObjects([...objects, newObject]);
     setShowAIPanel(false);
   };
 
-  const handleAIGeneratedEnvironment = (environment: any) => {
+  const handleAIGeneratedEnvironment = (environment: { backgroundColor: string; fogEnabled: boolean; fogColor: string; fogNear: number; fogFar: number; lighting: any; }) => {
     console.log('Environment generated:', environment);
     // Update scene environment settings
   };
@@ -454,7 +465,7 @@ function SceneObjectComponent({
   tool: string;
   onUpdate: (updates: Partial<SceneObject>) => void;
 }) {
-  const meshRef = useRef<any>();
+  const meshRef = useRef<any>(null);
   const [isDragging, setIsDragging] = useState(false);
 
   useFrame(() => {

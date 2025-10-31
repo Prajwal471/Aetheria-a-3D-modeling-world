@@ -1,6 +1,6 @@
 import { createContext, useContext, ReactNode } from 'react';
 import { User } from 'firebase/auth';
-import { Project, Scene, SceneObject, CollaborationState } from '@/types';
+import { Project, Scene, SceneObject, CollaborationState, TeamMember } from '@/types';
 
 interface AetheriaContextType {
   user: User | null;

@@ -10,7 +10,7 @@ import { Loader2, Mail, Lock, Eye, EyeOff, User, ArrowLeft } from 'lucide-react'
 import Link from 'next/link';
 
 export default function SignUpPage() {
-  const { signUp, signInWithGoogle, loading } = useAuth();
+  const { signUp, signInWithGoogle } = useAuth();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({

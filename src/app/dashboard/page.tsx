@@ -9,19 +9,17 @@ import {
   Plus, 
   Users, 
   Box, 
-  Settings, 
   LogOut, 
-  Play, 
-  Share2, 
-  Download,
   Upload,
-  Sparkles
+  Sparkles,
+  Share2,
+  Settings
 } from 'lucide-react';
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
   const router = useRouter();
-  const [projects, setProjects] = useState<any[]>([]);
+  const [projects, setProjects] = useState<Array<{id: string, name: string, description: string, lastModified: string, collaborators: number, scenes: number}>>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -252,7 +250,7 @@ export default function Dashboard() {
                   <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                   <div className="flex-1">
                     <p className="text-white text-sm">
-                      <span className="font-medium">Mike Johnson</span> generated AI asset "weathered stone fountain"
+                      <span className="font-medium">Mike Johnson</span> generated AI asset &quot;weathered stone fountain&quot;
                     </p>
                     <p className="text-gray-400 text-xs">15 minutes ago</p>
                   </div>
@@ -261,7 +259,7 @@ export default function Dashboard() {
                   <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
                   <div className="flex-1">
                     <p className="text-white text-sm">
-                      <span className="font-medium">You</span> created new scene "Castle Courtyard"
+                      <span className="font-medium">You</span> created new scene &quot;Castle Courtyard&quot;
                     </p>
                     <p className="text-gray-400 text-xs">1 hour ago</p>
                   </div>

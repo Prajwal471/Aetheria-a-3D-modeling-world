@@ -10,7 +10,7 @@ import { Loader2, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 export default function SignInPage() {
-  const { signIn, signInWithGoogle, loading } = useAuth();
+  const { signIn, signInWithGoogle } = useAuth();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -180,7 +180,7 @@ export default function SignInPage() {
           
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-300">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <Link href="/auth/signup" className="text-blue-400 hover:text-blue-300 font-medium">
                 Sign up
               </Link>

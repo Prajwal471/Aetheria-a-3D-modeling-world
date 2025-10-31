@@ -11,14 +11,15 @@ import {
   Wand2, 
   Image, 
   Globe, 
-  Settings,
   X,
   Check
 } from 'lucide-react';
 import { aiGenerationService, AIGenerationRequest } from '@/services/AIGenerationService';
 
+import { SceneObject } from '@/types';
+
 interface AIGenerationPanelProps {
-  onObjectGenerated: (object: any) => void;
+  onObjectGenerated: (object: SceneObject) => void;
   onEnvironmentGenerated: (environment: any) => void;
   onClose: () => void;
 }
@@ -30,7 +31,7 @@ export default function AIGenerationPanel({
 }: AIGenerationPanelProps) {
   const [activeTab, setActiveTab] = useState('object');
   const [isGenerating, setIsGenerating] = useState(false);
-  const [generationHistory, setGenerationHistory] = useState<any[]>([]);
+  const [generationHistory, setGenerationHistory] = useState<SceneObject[]>([]);
   
   const [objectPrompt, setObjectPrompt] = useState('');
   const [objectStyle, setObjectStyle] = useState<'realistic' | 'cartoon' | 'low-poly' | 'architectural'>('realistic');
@@ -56,7 +57,7 @@ export default function AIGenerationPanel({
       
       if (response.success && response.object) {
         onObjectGenerated(response.object);
-        setGenerationHistory(prev => [response.object, ...prev.slice(0, 9)]);
+        setGenerationHistory(prev => [response.object as SceneObject, ...prev.slice(0, 9)]);
         setObjectPrompt('');
       } else {
         console.error('Generation failed:', response.error);
@@ -151,7 +152,7 @@ export default function AIGenerationPanel({
                 3D Objects
               </TabsTrigger>
               <TabsTrigger value="texture" className="text-white data-[state=active]:bg-gray-600">
-                <Image className="h-4 w-4 mr-2" />
+                <Image className="h-4 w-4 mr-2" aria-hidden="true" />
                 Textures
               </TabsTrigger>
               <TabsTrigger value="environment" className="text-white data-[state=active]:bg-gray-600">
@@ -196,7 +197,7 @@ export default function AIGenerationPanel({
                   <label className="text-white font-medium mb-2 block">Style</label>
                   <select
                     value={objectStyle}
-                    onChange={(e) => setObjectStyle(e.target.value as any)}
+                    onChange={(e) => setObjectStyle(e.target.value as 'realistic' | 'cartoon' | 'low-poly' | 'architectural')}
                     className="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white"
                   >
                     <option value="realistic">Realistic</option>
@@ -210,7 +211,7 @@ export default function AIGenerationPanel({
                   <label className="text-white font-medium mb-2 block">Complexity</label>
                   <select
                     value={objectComplexity}
-                    onChange={(e) => setObjectComplexity(e.target.value as any)}
+                    onChange={(e) => setObjectComplexity(e.target.value as 'simple' | 'medium' | 'complex')}
                     className="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white"
                   >
                     <option value="simple">Simple</option>
@@ -223,7 +224,7 @@ export default function AIGenerationPanel({
                   <label className="text-white font-medium mb-2 block">Size</label>
                   <select
                     value={objectSize}
-                    onChange={(e) => setObjectSize(e.target.value as any)}
+                    onChange={(e) => setObjectSize(e.target.value as 'small' | 'medium' | 'large')}
                     className="w-full p-2 bg-gray-700 border border-gray-600 rounded text-white"
                   >
                     <option value="small">Small</option>
@@ -275,7 +276,7 @@ export default function AIGenerationPanel({
                   </>
                 ) : (
                   <>
-                    <Image className="h-4 w-4 mr-2" />
+                    <Image className="h-4 w-4 mr-2" aria-hidden="true" />
                     Generate Texture
                   </>
                 )}

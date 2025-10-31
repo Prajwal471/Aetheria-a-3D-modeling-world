@@ -52,7 +52,7 @@ export default function ForgotPasswordPage() {
             <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">Email Sent!</h3>
             <p className="text-gray-300 mb-6">
-              We've sent password reset instructions to <strong>{email}</strong>
+              We&apos;ve sent password reset instructions to <strong>{email}</strong>
             </p>
             <div className="space-y-3">
               <Link href="/auth/signin">
@@ -91,7 +91,7 @@ export default function ForgotPasswordPage() {
             <div className="w-5"></div>
           </div>
           <CardDescription>
-            Enter your email address and we'll send you a link to reset your password.
+            Enter your email address and we&apos;ll send you a link to reset your password.
           </CardDescription>
         </CardHeader>
         <CardContent>
